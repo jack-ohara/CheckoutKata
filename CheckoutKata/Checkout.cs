@@ -1,17 +1,25 @@
-﻿namespace CheckoutKata
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace CheckoutKata
 {
     public class Checkout
     {
-        private Item _scannedItem;
+        private readonly List<Item> _scannedItems;
+
+        public Checkout()
+        {
+            _scannedItems = new List<Item>();
+        }
 
         public void Scan(Item item)
         {
-            _scannedItem = item;
+            _scannedItems.Add(item);
         }
 
         public int GetTotalPrice()
         {
-            return _scannedItem.Price;
+            return _scannedItems.Sum(item => item.Price);
         }
     }
 }

@@ -17,6 +17,9 @@ namespace CheckoutKataTests
             {"D", new Item("D", 10)}
         };
 
+        private static readonly HashSet<SpecialOffer> _specialOffers = new HashSet<SpecialOffer>
+            {new SpecialOffer("A", 3, 130), new SpecialOffer("B", 2, 45)};
+
         private static IEnumerable<object[]> CheckoutTestData
         {
             get
@@ -25,11 +28,15 @@ namespace CheckoutKataTests
                 yield return new object[] {new[] {_items["B"]}, 30};
                 yield return new object[] {new[] {_items["C"]}, 20};
                 yield return new object[] {new[] {_items["D"]}, 10};
+
                 yield return new object[] {new[] {_items["A"], _items["A"]}, 100};
                 yield return new object[] {new[] {_items["A"], _items["B"]}, 80};
                 yield return new object[] {new[] {_items["B"], _items["C"]}, 50};
+
                 yield return new object[] {new[] {_items["A"], _items["B"], _items["C"]}, 100};
                 yield return new object[] {new[] {_items["B"], _items["D"], _items["A"]}, 90};
+
+                yield return new object[] {new[] {_items["A"], _items["A"], _items["A"]}, 130};
             }
         }
 

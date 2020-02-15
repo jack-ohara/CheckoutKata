@@ -11,7 +11,11 @@ namespace CheckoutKataTests
 
         private static IEnumerable<object[]> CheckoutTestData
         {
-            get { yield return new object[] {new[] {new Item("A", 50)}, 50}; }
+            get
+            {
+                yield return new object[] {new[] {new Item("A", 50)}, 50};
+                yield return new object[] {new[] {new Item("B", 30)}, 30};
+            }
         }
 
         [SetUp]

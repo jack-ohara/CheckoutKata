@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using CheckoutKata;
+using NUnit.Framework;
 
 namespace CheckoutKataTests
 {
@@ -25,4 +26,5 @@ namespace CheckoutKataTests
             Assert.That(totalPrice, Is.EqualTo(item.Price));
         }
     }
+
 }

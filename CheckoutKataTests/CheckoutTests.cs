@@ -9,15 +9,23 @@ namespace CheckoutKataTests
     {
         private Checkout _checkout;
 
+        private static readonly IDictionary<string, Item> _items = new Dictionary<string, Item>
+        {
+            {"A", new Item("A", 50)},
+            {"B", new Item("B", 30)},
+            {"C", new Item("C", 20)},
+            {"D", new Item("D", 10)}
+        };
+
         private static IEnumerable<object[]> CheckoutTestData
         {
             get
             {
-                yield return new object[] {new[] {new Item("A", 50)}, 50};
-                yield return new object[] {new[] {new Item("B", 30)}, 30};
-                yield return new object[] {new[] {new Item("C", 20)}, 20};
-                yield return new object[] {new[] {new Item("C", 10)}, 10};
-                yield return new object[] {new[] {new Item("A", 50), new Item("A", 50)}, 100};
+                yield return new object[] {new[] {_items["A"]}, 50};
+                yield return new object[] {new[] {_items["B"]}, 30};
+                yield return new object[] {new[] {_items["C"]}, 20};
+                yield return new object[] {new[] {_items["D"]}, 10};
+                yield return new object[] {new[] {_items["A"], _items["A"]}, 100};
             }
         }
 

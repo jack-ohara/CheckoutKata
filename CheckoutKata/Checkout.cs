@@ -2,13 +2,16 @@
 {
     public class Checkout
     {
+        private Item _scannedItem;
+
         public void Scan(Item item)
         {
+            _scannedItem = item;
         }
 
         public int GetTotalPrice()
         {
-            return 50;
+            return _scannedItem.Price;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace CheckoutKataTests
     {
         private Checkout _checkout;
 
-        private static readonly IDictionary<string, Item> _items = new Dictionary<string, Item>
+        private static readonly IDictionary<string, Item> Items = new Dictionary<string, Item>
         {
             {"A", new Item("A", 50)},
             {"B", new Item("B", 30)},
@@ -17,33 +17,33 @@ namespace CheckoutKataTests
             {"D", new Item("D", 10)}
         };
 
-        private static readonly HashSet<SpecialOffer> _specialOffers = new HashSet<SpecialOffer>
+        private static readonly HashSet<SpecialOffer> SpecialOffers = new HashSet<SpecialOffer>
             {new SpecialOffer("A", 3, 130), new SpecialOffer("B", 2, 45)};
 
         private static IEnumerable<object[]> CheckoutTestData
         {
             get
             {
-                yield return new object[] {new[] {_items["A"]}, 50};
-                yield return new object[] {new[] {_items["B"]}, 30};
-                yield return new object[] {new[] {_items["C"]}, 20};
-                yield return new object[] {new[] {_items["D"]}, 10};
+                yield return new object[] {new[] {Items["A"]}, 50};
+                yield return new object[] {new[] {Items["B"]}, 30};
+                yield return new object[] {new[] {Items["C"]}, 20};
+                yield return new object[] {new[] {Items["D"]}, 10};
 
-                yield return new object[] {new[] {_items["A"], _items["A"]}, 100};
-                yield return new object[] {new[] {_items["A"], _items["B"]}, 80};
-                yield return new object[] {new[] {_items["B"], _items["C"]}, 50};
+                yield return new object[] {new[] {Items["A"], Items["A"]}, 100};
+                yield return new object[] {new[] {Items["A"], Items["B"]}, 80};
+                yield return new object[] {new[] {Items["B"], Items["C"]}, 50};
 
-                yield return new object[] {new[] {_items["A"], _items["B"], _items["C"]}, 100};
-                yield return new object[] {new[] {_items["B"], _items["D"], _items["A"]}, 90};
+                yield return new object[] {new[] {Items["A"], Items["B"], Items["C"]}, 100};
+                yield return new object[] {new[] {Items["B"], Items["D"], Items["A"]}, 90};
 
-                yield return new object[] {new[] {_items["A"], _items["A"], _items["A"]}, 130};
+                yield return new object[] {new[] {Items["A"], Items["A"], Items["A"]}, 130};
             }
         }
 
         [SetUp]
         public void SetUp()
         {
-            _checkout = new Checkout();
+            _checkout = new Checkout(SpecialOffers);
         }
 
         [TestCaseSource(nameof(CheckoutTestData))]

@@ -7,7 +7,7 @@ namespace CheckoutKata
     {
         private readonly List<Item> _scannedItems;
 
-        public Checkout()
+        public Checkout(HashSet<SpecialOffer> specialOffers)
         {
             _scannedItems = new List<Item>();
         }

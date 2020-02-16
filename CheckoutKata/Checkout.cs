@@ -29,14 +29,14 @@ namespace CheckoutKata
             {
                 var specialOffer = _specialOffers.FirstOrDefault(offer => offer.ItemSku.Equals(groupBySku.Key));
 
-                if (specialOffer != null)
+                if (specialOffer is null)
                 {
-                    total += groupBySku.Count() / specialOffer.QualifyingNumberOfItems * specialOffer.SpecialPrice;
-                    total += (groupBySku.Count() % specialOffer.QualifyingNumberOfItems) * groupBySku.First().Price;
+                    total += groupBySku.Count() * groupBySku.First().Price;
                 }
                 else
                 {
-                    total += groupBySku.Count() * groupBySku.First().Price;
+                    total += groupBySku.Count() / specialOffer.QualifyingNumberOfItems * specialOffer.SpecialPrice;
+                    total += groupBySku.Count() % specialOffer.QualifyingNumberOfItems * groupBySku.First().Price;
                 }
             }
 

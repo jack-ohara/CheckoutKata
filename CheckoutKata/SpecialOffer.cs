@@ -12,10 +12,12 @@ namespace CheckoutKata
             }
 
             ItemSku = itemSku;
+            QualifyingNumberOfItems = qualifyingNumberOfItems;
             SpecialPrice = specialPrice;
         }
 
         public string ItemSku { get; }
         public int SpecialPrice { get; }
+        public int QualifyingNumberOfItems { get; }
     }
 }

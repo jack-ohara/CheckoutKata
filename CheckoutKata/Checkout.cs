@@ -21,9 +21,26 @@ namespace CheckoutKata
 
         public int GetTotalPrice()
         {
-            return _specialOffers
-                       .FirstOrDefault(offer => _scannedItems.Select(item => item.Sku).Contains(offer.ItemSku))
-                       ?.SpecialPrice ?? _scannedItems.Sum(item => item.Price);
+            var total = 0;
+
+            var itemsAndCount = _scannedItems.GroupBy(item => item.Sku);
+
+            foreach (var groupBySku in itemsAndCount)
+            {
+                var specialOffer = _specialOffers.FirstOrDefault(offer => offer.ItemSku.Equals(groupBySku.Key));
+
+                if (specialOffer != null)
+                {
+                    total += groupBySku.Count() / specialOffer.QualifyingNumberOfItems * specialOffer.SpecialPrice;
+                    total += (groupBySku.Count() % specialOffer.QualifyingNumberOfItems) * groupBySku.First().Price;
+                }
+                else
+                {
+                    total += groupBySku.Count() * groupBySku.First().Price;
+                }
+            }
+
+            return total;
         }
     }
 }

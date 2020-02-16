@@ -39,6 +39,7 @@ namespace CheckoutKataTests
                 yield return new object[] {new[] {Items["A"], Items["A"], Items["A"]}, 130};
                 yield return new object[] {new[] {Items["B"], Items["B"]}, 45};
                 yield return new object[] {new[] {Items["A"], Items["A"], Items["A"], Items["B"], Items["B"]}, 175};
+                yield return new object[] {new[] {Items["A"], Items["B"], Items["A"], Items["B"], Items["A"]}, 175};
             }
         }
 

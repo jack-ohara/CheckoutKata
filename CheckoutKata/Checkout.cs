@@ -23,7 +23,7 @@ namespace CheckoutKata
         {
             return _specialOffers
                        .FirstOrDefault(offer => _scannedItems.Select(item => item.Sku).Contains(offer.ItemSku))
-                       .SpecialPrice ?? _scannedItems.Sum(item => item.Price);
+                       ?.SpecialPrice ?? _scannedItems.Sum(item => item.Price);
         }
     }
 }

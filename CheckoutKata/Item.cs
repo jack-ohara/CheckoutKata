@@ -6,7 +6,11 @@ namespace CheckoutKata
     {
         public Item(string sku, int price)
         {
-            throw new ArgumentException("A SKU must be provided for an item");
+            if (string.IsNullOrWhiteSpace(sku))
+            {
+                throw new ArgumentException("A SKU must be provided for an item");
+            }
+
             Sku = sku;
             Price = price;
         }

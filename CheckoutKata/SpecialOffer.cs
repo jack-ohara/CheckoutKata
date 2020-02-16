@@ -6,7 +6,11 @@ namespace CheckoutKata
     {
         public SpecialOffer(string itemSku, int qualifyingNumberOfItems, int specialPrice)
         {
-            throw new ArgumentException("A SKU must be provided for a special offer");
+            if (string.IsNullOrWhiteSpace(itemSku))
+            {
+                throw new ArgumentException("A SKU must be provided for a special offer");
+            }
+
             ItemSku = itemSku;
             SpecialPrice = specialPrice;
         }

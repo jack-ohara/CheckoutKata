@@ -7,8 +7,6 @@ namespace CheckoutKataTests
     [TestFixture]
     public class CheckoutTests
     {
-        private Checkout _checkout;
-
         private static readonly IDictionary<string, Item> Items = new Dictionary<string, Item>
         {
             {"A", new Item("A", 50)},
@@ -45,21 +43,17 @@ namespace CheckoutKataTests
             }
         }
 
-        [SetUp]
-        public void SetUp()
-        {
-            _checkout = new Checkout(SpecialOffers);
-        }
-
         [TestCaseSource(nameof(CheckoutTestData))]
         public void ReturnsThePriceOfASingleScannedItem(IEnumerable<Item> items, int expectedPrice)
         {
+            var checkout = new Checkout(SpecialOffers);
+
             foreach (var item in items)
             {
-                _checkout.Scan(item);
+                checkout.Scan(item);
             }
 
-            var totalPrice = _checkout.GetTotalPrice();
+            var totalPrice = checkout.GetTotalPrice();
 
             Assert.That(totalPrice, Is.EqualTo(expectedPrice));
         }

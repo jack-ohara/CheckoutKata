@@ -10,7 +10,7 @@ namespace CheckoutKata
 
         public Checkout(HashSet<SpecialOffer> specialOffers)
         {
-            _specialOffers = specialOffers;
+            _specialOffers = specialOffers ?? new HashSet<SpecialOffer>();
             _scannedItems = new List<Item>();
         }
 

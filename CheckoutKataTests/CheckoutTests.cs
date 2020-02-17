@@ -1,6 +1,7 @@
 ﻿using CheckoutKata;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Reflection.PortableExecutable;
 
 namespace CheckoutKataTests
 {
@@ -56,6 +57,18 @@ namespace CheckoutKataTests
             var totalPrice = checkout.GetTotalPrice();
 
             Assert.That(totalPrice, Is.EqualTo(expectedPrice));
+        }
+
+        [Test]
+        public void DoesNotThrowExceptionWhenGettingTotalIfSpecialOffersIsNull()
+        {
+            var checkout = new Checkout(null);
+
+            checkout.Scan(Items["A"]);
+            checkout.Scan(Items["B"]);
+            checkout.Scan(Items["A"]);
+
+            Assert.That(() => checkout.GetTotalPrice(), Throws.Nothing);
         }
     }
 }
